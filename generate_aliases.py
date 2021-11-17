@@ -15,6 +15,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# python generate_aliases.py -o ps1 | Out-File -Encoding ascii kubectl_aliases.ps1
+
 from __future__ import print_function
 import itertools
 import os.path
@@ -28,6 +30,7 @@ except NameError:
 
 def main(argv):
     # (alias, full, allow_when_oneof, incompatible_with)
+    kubectl_alias = 'Set-Alias -Name k kubectl'
     cmds = [('k', 'kubectl', None, None)]
 
     globs = [('sys', '--namespace=kube-system', None, ['sys'])]
@@ -35,8 +38,9 @@ def main(argv):
     ops = [
         ('a', 'apply --recursive -f', None, None),
         ('ex', 'exec -i -t', None, None),
-        ('lo', 'logs -f', None, None),
-        ('lop', 'logs -f -p', None, None),
+        ('lo', 'logs', None, None),
+        ('ed', 'edit', None, None),
+        ('lop', 'logs -p', None, None),
         ('p', 'proxy', None, ['sys']),
         ('g', 'get', None, None),
         ('d', 'describe', None, None),
@@ -45,14 +49,21 @@ def main(argv):
         ]
 
     res = [
-        ('po', 'pods', ['g', 'd', 'rm'], None),
-        ('dep', 'deployment', ['g', 'd', 'rm'], None),
-        ('svc', 'service', ['g', 'd', 'rm'], None),
-        ('ing', 'ingress', ['g', 'd', 'rm'], None),
-        ('cm', 'configmap', ['g', 'd', 'rm'], None),
-        ('sec', 'secret', ['g', 'd', 'rm'], None),
+        ('po', 'pods', ['g', 'd', 'rm', 'ed'], None),
+        ('dep', 'deployment', ['g', 'd', 'rm', 'ed'], None),
+        ('ags', 'ags', ['g', 'd', 'rm', 'ed'], None),
+        ('pg', 'pg', ['g', 'd', 'rm', 'ed'], None),
+        ('ss', 'statefulset', ['g', 'd', 'rm', 'ed'], None),
+        ('ds', 'statefulset', ['g', 'd', 'rm', 'ed'], None),
+        ('svc', 'service', ['g', 'd', 'rm', 'ed'], None),
+        ('ing', 'ingress.v1.networking.k8s.io', ['g', 'd', 'rm', 'ed'], None),
+        ('cm', 'configmap', ['g', 'd', 'rm', 'ed'], None),
+        ('pvc', 'pvc', ['g', 'd', 'rm', 'ed'], None),
+        ('hpa', 'pvc', ['g', 'd', 'rm', 'ed'], None),
+        ('crt', 'cert', ['g', 'd', 'rm', 'ed'], None),
+        ('sec', 'secret', ['g', 'd', 'rm', 'ed'], None),
         ('no', 'nodes', ['g', 'd'], ['sys']),
-        ('ns', 'namespaces', ['g', 'd', 'rm'], ['sys']),
+        ('ns', 'namespaces', ['g', 'd', 'rm', 'ed'], ['sys']),
         ]
     res_types = [r[0] for r in res]
 
@@ -70,15 +81,15 @@ def main(argv):
 
     # these accept a value, so they need to be at the end and
     # mutually exclusive within each other.
-    positional_args = [('f', '--recursive -f', ['g', 'd', 'rm'], res_types + ['all'
-                       , 'l', 'sys']), ('l', '-l', ['g', 'd', 'rm'], ['f',
-                       'all']), ('n', '--namespace', ['g', 'd', 'rm',
+    positional_args = [('f', '--recursive -f', ['g', 'd', 'rm', 'ed'], res_types + ['all'
+                       , 'l', 'sys']), ('l', '-l', ['g', 'd', 'rm', 'ed'], ['f',
+                       'all']), ('n', '--namespace', ['g', 'd', 'rm', 'ed',
                        'lo', 'ex'], ['ns', 'no', 'sys', 'all'])]
 
     # [(part, optional, take_exactly_one)]
     parts = [
         (cmds, False, True),
-        (globs, True, False),
+        # (globs, True, False),
         (ops, True, True),
         (res, True, True),
         (args, True, False),
@@ -97,7 +108,7 @@ def main(argv):
             print(f.read())
 
     # setting the output format from arg
-    output = 'bash'
+    output = 'ps1'
     try:
         opts, args = getopt.getopt(argv,"o:",["output="])
     except getopt.GetoptError:
@@ -106,6 +117,8 @@ def main(argv):
         if opt in ("-o", "--output"):
             output = arg
 
+    print(kubectl_alias)
+    
     for cmd in out:
         if output == "bash":
             print("alias {}='{}'".format(''.join([a[0] for a in cmd]),
