@@ -31,15 +31,18 @@ except NameError:
 def main(argv):
     # (alias, full, allow_when_oneof, incompatible_with)
     kubectl_alias = 'Set-Alias -Name k kubectl'
-    cmds = [('k', 'kubectl', None, None)]
+    # cmds = [('k', 'kubectl', None, None)]
+    cmds =[()]
 
     globs = [('sys', '--namespace=kube-system', None, ['sys'])]
 
     ops = [
         ('a', 'apply --recursive -f', None, None),
+        ('df', 'diff -f', None, None),
         ('ex', 'exec -i -t', None, None),
         ('lo', 'logs', None, None),
         ('ed', 'edit', None, None),
+        ('rr', 'rollout restart', None, None),
         ('lop', 'logs -p', None, None),
         ('p', 'proxy', None, ['sys']),
         ('g', 'get', None, None),
@@ -50,11 +53,12 @@ def main(argv):
 
     res = [
         ('po', 'pods', ['g', 'd', 'rm', 'ed'], None),
-        ('dep', 'deployment', ['g', 'd', 'rm', 'ed'], None),
+        ('dep', 'deployment', ['g', 'd', 'rm', 'ed', 'rr'], None),
         ('ags', 'ags', ['g', 'd', 'rm', 'ed'], None),
         ('pg', 'pg', ['g', 'd', 'rm', 'ed'], None),
-        ('ss', 'statefulset', ['g', 'd', 'rm', 'ed'], None),
-        ('ds', 'statefulset', ['g', 'd', 'rm', 'ed'], None),
+        ('ss', 'statefulset', ['g', 'd', 'rm', 'ed', 'rr'], None),
+        ('ds', 'daemonset', ['g', 'd', 'rm', 'ed', 'rr'], None),
+        ('rs', 'replicaset', ['g', 'd', 'rm', 'ed'], None),
         ('svc', 'service', ['g', 'd', 'rm', 'ed'], None),
         ('ing', 'ingress.v1.networking.k8s.io', ['g', 'd', 'rm', 'ed'], None),
         ('cm', 'configmap', ['g', 'd', 'rm', 'ed'], None),
@@ -88,7 +92,7 @@ def main(argv):
 
     # [(part, optional, take_exactly_one)]
     parts = [
-        (cmds, False, True),
+        # (cmds, False, True),
         # (globs, True, False),
         (ops, True, True),
         (res, True, True),
@@ -120,13 +124,14 @@ def main(argv):
     print(kubectl_alias)
     
     for cmd in out:
-        if output == "bash":
-            print("alias {}='{}'".format(''.join([a[0] for a in cmd]),
-              ' '.join([a[1] for a in cmd])))
-        elif output in ("ps1", "powershell"):
-            tpl = "function {}([Parameter(ValueFromRemainingArguments = $true)]$params) {{ & {} $params }}"
-            print(tpl.format(''.join([a[0] for a in cmd]),
-              ' '.join([a[1] for a in cmd])))
+        if len(cmd) > 0:
+            if output == "bash":
+                print("alias k{}='{}'".format(''.join([a[0] for a in cmd]),
+                ' '.join([a[1] for a in cmd])))
+            elif output in ("ps1", "powershell"):
+                tpl = "function k{}([Parameter(ValueFromRemainingArguments = $true)]$params) {{ & kubectl {} $params }}"
+                print(tpl.format(''.join([a[0] for a in cmd]),
+                ' '.join([a[1] for a in cmd])))
 
 def gen(parts):
     out = [()]
