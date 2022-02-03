@@ -24,6 +24,7 @@ function kp([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl
 function kg([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get $params }
 function kd([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe $params }
 function krm([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete $params }
+function krmf([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete --recursive -f $params }
 function krun([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl run --rm --restart=Never --image-pull-policy=IfNotPresent -i -t $params }
 function kedpo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit pods $params }
 function kgpo([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pods $params }
@@ -42,11 +43,11 @@ function kedpg([Parameter(ValueFromRemainingArguments = $true)]$params) { & kube
 function kgpg([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg $params }
 function kdpg([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pg $params }
 function krmpg([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pg $params }
-function kedss([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit statefulset $params }
-function krrss([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl rollout restart statefulset $params }
-function kgss([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset $params }
-function kdss([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe statefulset $params }
-function krmss([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete statefulset $params }
+function kedsts([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit statefulset $params }
+function krrsts([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl rollout restart statefulset $params }
+function kgsts([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset $params }
+function kdsts([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe statefulset $params }
+function krmsts([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete statefulset $params }
 function kedds([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit daemonset $params }
 function krrds([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl rollout restart daemonset $params }
 function kgds([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset $params }
@@ -72,10 +73,10 @@ function kedpvc([Parameter(ValueFromRemainingArguments = $true)]$params) { & kub
 function kgpvc([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc $params }
 function kdpvc([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pvc $params }
 function krmpvc([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pvc $params }
-function kedhpa([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit pvc $params }
-function kghpa([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc $params }
-function kdhpa([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pvc $params }
-function krmhpa([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pvc $params }
+function kedhpa([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit hpa $params }
+function kghpa([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa $params }
+function kdhpa([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe hpa $params }
+function krmhpa([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete hpa $params }
 function kedcrt([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit cert $params }
 function kgcrt([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert $params }
 function kdcrt([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe cert $params }
@@ -95,14 +96,14 @@ function kgpooyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & 
 function kgdepoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=yaml $params }
 function kgagsoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags -o=yaml $params }
 function kgpgoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg -o=yaml $params }
-function kgssoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=yaml $params }
+function kgstsoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=yaml $params }
 function kgdsoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset -o=yaml $params }
 function kgrsoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset -o=yaml $params }
 function kgsvcoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=yaml $params }
 function kgingoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io -o=yaml $params }
 function kgcmoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=yaml $params }
 function kgpvcoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=yaml $params }
-function kghpaoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=yaml $params }
+function kghpaoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa -o=yaml $params }
 function kgcrtoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert -o=yaml $params }
 function kgsecoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=yaml $params }
 function kgnooyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes -o=yaml $params }
@@ -112,14 +113,14 @@ function kgpoowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & 
 function kgdepowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=wide $params }
 function kgagsowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags -o=wide $params }
 function kgpgowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg -o=wide $params }
-function kgssowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=wide $params }
+function kgstsowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=wide $params }
 function kgdsowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset -o=wide $params }
 function kgrsowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset -o=wide $params }
 function kgsvcowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=wide $params }
 function kgingowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io -o=wide $params }
 function kgcmowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=wide $params }
 function kgpvcowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=wide $params }
-function kghpaowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=wide $params }
+function kghpaowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa -o=wide $params }
 function kgcrtowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert -o=wide $params }
 function kgsecowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=wide $params }
 function kgnoowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes -o=wide $params }
@@ -129,14 +130,14 @@ function kgpoojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & 
 function kgdepojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=json $params }
 function kgagsojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags -o=json $params }
 function kgpgojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg -o=json $params }
-function kgssojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=json $params }
+function kgstsojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=json $params }
 function kgdsojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset -o=json $params }
 function kgrsojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset -o=json $params }
 function kgsvcojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=json $params }
 function kgingojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io -o=json $params }
 function kgcmojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=json $params }
 function kgpvcojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=json $params }
-function kghpaojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=json $params }
+function kghpaojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa -o=json $params }
 function kgcrtojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert -o=json $params }
 function kgsecojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=json $params }
 function kgnoojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes -o=json $params }
@@ -151,8 +152,8 @@ function kgagsall([Parameter(ValueFromRemainingArguments = $true)]$params) { & k
 function kdagsall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe ags --all-namespaces $params }
 function kgpgall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --all-namespaces $params }
 function kdpgall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pg --all-namespaces $params }
-function kgssall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces $params }
-function kdssall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe statefulset --all-namespaces $params }
+function kgstsall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces $params }
+function kdstsall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe statefulset --all-namespaces $params }
 function kgdsall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --all-namespaces $params }
 function kddsall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe daemonset --all-namespaces $params }
 function kgrsall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --all-namespaces $params }
@@ -165,8 +166,8 @@ function kgcmall([Parameter(ValueFromRemainingArguments = $true)]$params) { & ku
 function kdcmall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe configmap --all-namespaces $params }
 function kgpvcall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces $params }
 function kdpvcall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pvc --all-namespaces $params }
-function kghpaall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces $params }
-function kdhpaall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pvc --all-namespaces $params }
+function kghpaall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --all-namespaces $params }
+function kdhpaall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe hpa --all-namespaces $params }
 function kgcrtall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --all-namespaces $params }
 function kdcrtall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe cert --all-namespaces $params }
 function kgsecall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces $params }
@@ -181,14 +182,14 @@ function krmpoall([Parameter(ValueFromRemainingArguments = $true)]$params) { & k
 function krmdepall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete deployment --all $params }
 function krmagsall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete ags --all $params }
 function krmpgall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pg --all $params }
-function krmssall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete statefulset --all $params }
+function krmstsall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete statefulset --all $params }
 function krmdsall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete daemonset --all $params }
 function krmrsall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete replicaset --all $params }
 function krmsvcall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete service --all $params }
 function krmingall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete ingress.v1.networking.k8s.io --all $params }
 function krmcmall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete configmap --all $params }
 function krmpvcall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pvc --all $params }
-function krmhpaall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pvc --all $params }
+function krmhpaall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete hpa --all $params }
 function krmcrtall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete cert --all $params }
 function krmsecall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete secret --all $params }
 function krmnsall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete namespaces --all $params }
@@ -197,14 +198,14 @@ function kgpow([Parameter(ValueFromRemainingArguments = $true)]$params) { & kube
 function kgdepw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch $params }
 function kgagsw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch $params }
 function kgpgw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch $params }
-function kgssw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch $params }
+function kgstsw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch $params }
 function kgdsw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch $params }
 function kgrsw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch $params }
 function kgsvcw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch $params }
 function kgingw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch $params }
 function kgcmw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch $params }
 function kgpvcw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch $params }
-function kghpaw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch $params }
+function kghpaw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch $params }
 function kgcrtw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch $params }
 function kgsecw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch $params }
 function kgnow([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch $params }
@@ -214,14 +215,14 @@ function kgpooyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) {
 function kgdepoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=yaml --all-namespaces $params }
 function kgagsoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags -o=yaml --all-namespaces $params }
 function kgpgoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg -o=yaml --all-namespaces $params }
-function kgssoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=yaml --all-namespaces $params }
+function kgstsoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=yaml --all-namespaces $params }
 function kgdsoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset -o=yaml --all-namespaces $params }
 function kgrsoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset -o=yaml --all-namespaces $params }
 function kgsvcoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=yaml --all-namespaces $params }
 function kgingoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io -o=yaml --all-namespaces $params }
 function kgcmoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=yaml --all-namespaces $params }
 function kgpvcoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=yaml --all-namespaces $params }
-function kghpaoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=yaml --all-namespaces $params }
+function kghpaoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa -o=yaml --all-namespaces $params }
 function kgcrtoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert -o=yaml --all-namespaces $params }
 function kgsecoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=yaml --all-namespaces $params }
 function kgnsoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces -o=yaml --all-namespaces $params }
@@ -230,14 +231,14 @@ function kgpoalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) {
 function kgdepalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces -o=yaml $params }
 function kgagsalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --all-namespaces -o=yaml $params }
 function kgpgalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --all-namespaces -o=yaml $params }
-function kgssalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces -o=yaml $params }
+function kgstsalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces -o=yaml $params }
 function kgdsalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --all-namespaces -o=yaml $params }
 function kgrsalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --all-namespaces -o=yaml $params }
 function kgsvcalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --all-namespaces -o=yaml $params }
 function kgingalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --all-namespaces -o=yaml $params }
 function kgcmalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --all-namespaces -o=yaml $params }
 function kgpvcalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces -o=yaml $params }
-function kghpaalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces -o=yaml $params }
+function kghpaalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --all-namespaces -o=yaml $params }
 function kgcrtalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --all-namespaces -o=yaml $params }
 function kgsecalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces -o=yaml $params }
 function kgnsalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --all-namespaces -o=yaml $params }
@@ -246,14 +247,14 @@ function kgpowoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { &
 function kgdepwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=yaml $params }
 function kgagswoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch -o=yaml $params }
 function kgpgwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch -o=yaml $params }
-function kgsswoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=yaml $params }
+function kgstswoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=yaml $params }
 function kgdswoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch -o=yaml $params }
 function kgrswoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch -o=yaml $params }
 function kgsvcwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=yaml $params }
 function kgingwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch -o=yaml $params }
 function kgcmwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=yaml $params }
 function kgpvcwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=yaml $params }
-function kghpawoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=yaml $params }
+function kghpawoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch -o=yaml $params }
 function kgcrtwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch -o=yaml $params }
 function kgsecwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=yaml $params }
 function kgnowoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch -o=yaml $params }
@@ -263,14 +264,14 @@ function kgpoowideall([Parameter(ValueFromRemainingArguments = $true)]$params) {
 function kgdepowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=wide --all-namespaces $params }
 function kgagsowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags -o=wide --all-namespaces $params }
 function kgpgowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg -o=wide --all-namespaces $params }
-function kgssowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=wide --all-namespaces $params }
+function kgstsowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=wide --all-namespaces $params }
 function kgdsowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset -o=wide --all-namespaces $params }
 function kgrsowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset -o=wide --all-namespaces $params }
 function kgsvcowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=wide --all-namespaces $params }
 function kgingowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io -o=wide --all-namespaces $params }
 function kgcmowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=wide --all-namespaces $params }
 function kgpvcowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=wide --all-namespaces $params }
-function kghpaowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=wide --all-namespaces $params }
+function kghpaowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa -o=wide --all-namespaces $params }
 function kgcrtowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert -o=wide --all-namespaces $params }
 function kgsecowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=wide --all-namespaces $params }
 function kgnsowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces -o=wide --all-namespaces $params }
@@ -279,14 +280,14 @@ function kgpoallowide([Parameter(ValueFromRemainingArguments = $true)]$params) {
 function kgdepallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces -o=wide $params }
 function kgagsallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --all-namespaces -o=wide $params }
 function kgpgallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --all-namespaces -o=wide $params }
-function kgssallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces -o=wide $params }
+function kgstsallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces -o=wide $params }
 function kgdsallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --all-namespaces -o=wide $params }
 function kgrsallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --all-namespaces -o=wide $params }
 function kgsvcallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --all-namespaces -o=wide $params }
 function kgingallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --all-namespaces -o=wide $params }
 function kgcmallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --all-namespaces -o=wide $params }
 function kgpvcallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces -o=wide $params }
-function kghpaallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces -o=wide $params }
+function kghpaallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --all-namespaces -o=wide $params }
 function kgcrtallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --all-namespaces -o=wide $params }
 function kgsecallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces -o=wide $params }
 function kgnsallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --all-namespaces -o=wide $params }
@@ -301,14 +302,14 @@ function kgpowowide([Parameter(ValueFromRemainingArguments = $true)]$params) { &
 function kgdepwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=wide $params }
 function kgagswowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch -o=wide $params }
 function kgpgwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch -o=wide $params }
-function kgsswowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=wide $params }
+function kgstswowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=wide $params }
 function kgdswowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch -o=wide $params }
 function kgrswowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch -o=wide $params }
 function kgsvcwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=wide $params }
 function kgingwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch -o=wide $params }
 function kgcmwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=wide $params }
 function kgpvcwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=wide $params }
-function kghpawowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=wide $params }
+function kghpawowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch -o=wide $params }
 function kgcrtwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch -o=wide $params }
 function kgsecwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=wide $params }
 function kgnowowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch -o=wide $params }
@@ -318,14 +319,14 @@ function kgpoojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) {
 function kgdepojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=json --all-namespaces $params }
 function kgagsojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags -o=json --all-namespaces $params }
 function kgpgojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg -o=json --all-namespaces $params }
-function kgssojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=json --all-namespaces $params }
+function kgstsojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=json --all-namespaces $params }
 function kgdsojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset -o=json --all-namespaces $params }
 function kgrsojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset -o=json --all-namespaces $params }
 function kgsvcojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=json --all-namespaces $params }
 function kgingojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io -o=json --all-namespaces $params }
 function kgcmojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=json --all-namespaces $params }
 function kgpvcojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=json --all-namespaces $params }
-function kghpaojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=json --all-namespaces $params }
+function kghpaojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa -o=json --all-namespaces $params }
 function kgcrtojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert -o=json --all-namespaces $params }
 function kgsecojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=json --all-namespaces $params }
 function kgnsojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces -o=json --all-namespaces $params }
@@ -334,14 +335,14 @@ function kgpoallojson([Parameter(ValueFromRemainingArguments = $true)]$params) {
 function kgdepallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces -o=json $params }
 function kgagsallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --all-namespaces -o=json $params }
 function kgpgallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --all-namespaces -o=json $params }
-function kgssallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces -o=json $params }
+function kgstsallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces -o=json $params }
 function kgdsallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --all-namespaces -o=json $params }
 function kgrsallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --all-namespaces -o=json $params }
 function kgsvcallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --all-namespaces -o=json $params }
 function kgingallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --all-namespaces -o=json $params }
 function kgcmallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --all-namespaces -o=json $params }
 function kgpvcallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces -o=json $params }
-function kghpaallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces -o=json $params }
+function kghpaallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --all-namespaces -o=json $params }
 function kgcrtallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --all-namespaces -o=json $params }
 function kgsecallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces -o=json $params }
 function kgnsallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --all-namespaces -o=json $params }
@@ -350,14 +351,14 @@ function kgpowojson([Parameter(ValueFromRemainingArguments = $true)]$params) { &
 function kgdepwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=json $params }
 function kgagswojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch -o=json $params }
 function kgpgwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch -o=json $params }
-function kgsswojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=json $params }
+function kgstswojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=json $params }
 function kgdswojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch -o=json $params }
 function kgrswojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch -o=json $params }
 function kgsvcwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=json $params }
 function kgingwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch -o=json $params }
 function kgcmwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=json $params }
 function kgpvcwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=json $params }
-function kghpawojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=json $params }
+function kghpawojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch -o=json $params }
 function kgcrtwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch -o=json $params }
 function kgsecwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=json $params }
 function kgnowojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch -o=json $params }
@@ -373,14 +374,14 @@ function kgpoallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & k
 function kgdepallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces --watch $params }
 function kgagsallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --all-namespaces --watch $params }
 function kgpgallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --all-namespaces --watch $params }
-function kgssallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces --watch $params }
+function kgstsallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces --watch $params }
 function kgdsallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --all-namespaces --watch $params }
 function kgrsallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --all-namespaces --watch $params }
 function kgsvcallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --all-namespaces --watch $params }
 function kgingallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --all-namespaces --watch $params }
 function kgcmallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --all-namespaces --watch $params }
 function kgpvcallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces --watch $params }
-function kghpaallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces --watch $params }
+function kghpaallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --all-namespaces --watch $params }
 function kgcrtallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --all-namespaces --watch $params }
 function kgsecallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces --watch $params }
 function kgnsallw([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --all-namespaces --watch $params }
@@ -389,14 +390,14 @@ function kgpowall([Parameter(ValueFromRemainingArguments = $true)]$params) { & k
 function kgdepwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --all-namespaces $params }
 function kgagswall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch --all-namespaces $params }
 function kgpgwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch --all-namespaces $params }
-function kgsswall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch --all-namespaces $params }
+function kgstswall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch --all-namespaces $params }
 function kgdswall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch --all-namespaces $params }
 function kgrswall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch --all-namespaces $params }
 function kgsvcwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch --all-namespaces $params }
 function kgingwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch --all-namespaces $params }
 function kgcmwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch --all-namespaces $params }
 function kgpvcwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch --all-namespaces $params }
-function kghpawall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch --all-namespaces $params }
+function kghpawall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch --all-namespaces $params }
 function kgcrtwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch --all-namespaces $params }
 function kgsecwall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch --all-namespaces $params }
 function kgnswall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch --all-namespaces $params }
@@ -411,14 +412,14 @@ function kgpoallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) 
 function kgdepallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces --watch -o=yaml $params }
 function kgagsallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --all-namespaces --watch -o=yaml $params }
 function kgpgallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --all-namespaces --watch -o=yaml $params }
-function kgssallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces --watch -o=yaml $params }
+function kgstsallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces --watch -o=yaml $params }
 function kgdsallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --all-namespaces --watch -o=yaml $params }
 function kgrsallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --all-namespaces --watch -o=yaml $params }
 function kgsvcallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --all-namespaces --watch -o=yaml $params }
 function kgingallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --all-namespaces --watch -o=yaml $params }
 function kgcmallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --all-namespaces --watch -o=yaml $params }
 function kgpvcallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces --watch -o=yaml $params }
-function kghpaallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces --watch -o=yaml $params }
+function kghpaallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --all-namespaces --watch -o=yaml $params }
 function kgcrtallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --all-namespaces --watch -o=yaml $params }
 function kgsecallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces --watch -o=yaml $params }
 function kgnsallwoyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --all-namespaces --watch -o=yaml $params }
@@ -427,14 +428,14 @@ function kgpowoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) 
 function kgdepwoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=yaml --all-namespaces $params }
 function kgagswoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch -o=yaml --all-namespaces $params }
 function kgpgwoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch -o=yaml --all-namespaces $params }
-function kgsswoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=yaml --all-namespaces $params }
+function kgstswoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=yaml --all-namespaces $params }
 function kgdswoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch -o=yaml --all-namespaces $params }
 function kgrswoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch -o=yaml --all-namespaces $params }
 function kgsvcwoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=yaml --all-namespaces $params }
 function kgingwoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch -o=yaml --all-namespaces $params }
 function kgcmwoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=yaml --all-namespaces $params }
 function kgpvcwoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=yaml --all-namespaces $params }
-function kghpawoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=yaml --all-namespaces $params }
+function kghpawoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch -o=yaml --all-namespaces $params }
 function kgcrtwoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch -o=yaml --all-namespaces $params }
 function kgsecwoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=yaml --all-namespaces $params }
 function kgnswoyamlall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch -o=yaml --all-namespaces $params }
@@ -443,14 +444,14 @@ function kgpowalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) 
 function kgdepwalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --all-namespaces -o=yaml $params }
 function kgagswalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch --all-namespaces -o=yaml $params }
 function kgpgwalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch --all-namespaces -o=yaml $params }
-function kgsswalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch --all-namespaces -o=yaml $params }
+function kgstswalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch --all-namespaces -o=yaml $params }
 function kgdswalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch --all-namespaces -o=yaml $params }
 function kgrswalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch --all-namespaces -o=yaml $params }
 function kgsvcwalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch --all-namespaces -o=yaml $params }
 function kgingwalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch --all-namespaces -o=yaml $params }
 function kgcmwalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch --all-namespaces -o=yaml $params }
 function kgpvcwalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch --all-namespaces -o=yaml $params }
-function kghpawalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch --all-namespaces -o=yaml $params }
+function kghpawalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch --all-namespaces -o=yaml $params }
 function kgcrtwalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch --all-namespaces -o=yaml $params }
 function kgsecwalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch --all-namespaces -o=yaml $params }
 function kgnswalloyaml([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch --all-namespaces -o=yaml $params }
@@ -477,14 +478,14 @@ function kgpoallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) 
 function kgdepallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces --watch -o=wide $params }
 function kgagsallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --all-namespaces --watch -o=wide $params }
 function kgpgallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --all-namespaces --watch -o=wide $params }
-function kgssallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces --watch -o=wide $params }
+function kgstsallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces --watch -o=wide $params }
 function kgdsallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --all-namespaces --watch -o=wide $params }
 function kgrsallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --all-namespaces --watch -o=wide $params }
 function kgsvcallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --all-namespaces --watch -o=wide $params }
 function kgingallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --all-namespaces --watch -o=wide $params }
 function kgcmallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --all-namespaces --watch -o=wide $params }
 function kgpvcallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces --watch -o=wide $params }
-function kghpaallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces --watch -o=wide $params }
+function kghpaallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --all-namespaces --watch -o=wide $params }
 function kgcrtallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --all-namespaces --watch -o=wide $params }
 function kgsecallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces --watch -o=wide $params }
 function kgnsallwowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --all-namespaces --watch -o=wide $params }
@@ -493,14 +494,14 @@ function kgpowowideall([Parameter(ValueFromRemainingArguments = $true)]$params) 
 function kgdepwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=wide --all-namespaces $params }
 function kgagswowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch -o=wide --all-namespaces $params }
 function kgpgwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch -o=wide --all-namespaces $params }
-function kgsswowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=wide --all-namespaces $params }
+function kgstswowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=wide --all-namespaces $params }
 function kgdswowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch -o=wide --all-namespaces $params }
 function kgrswowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch -o=wide --all-namespaces $params }
 function kgsvcwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=wide --all-namespaces $params }
 function kgingwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch -o=wide --all-namespaces $params }
 function kgcmwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=wide --all-namespaces $params }
 function kgpvcwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=wide --all-namespaces $params }
-function kghpawowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=wide --all-namespaces $params }
+function kghpawowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch -o=wide --all-namespaces $params }
 function kgcrtwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch -o=wide --all-namespaces $params }
 function kgsecwowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=wide --all-namespaces $params }
 function kgnswowideall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch -o=wide --all-namespaces $params }
@@ -509,14 +510,14 @@ function kgpowallowide([Parameter(ValueFromRemainingArguments = $true)]$params) 
 function kgdepwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --all-namespaces -o=wide $params }
 function kgagswallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch --all-namespaces -o=wide $params }
 function kgpgwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch --all-namespaces -o=wide $params }
-function kgsswallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch --all-namespaces -o=wide $params }
+function kgstswallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch --all-namespaces -o=wide $params }
 function kgdswallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch --all-namespaces -o=wide $params }
 function kgrswallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch --all-namespaces -o=wide $params }
 function kgsvcwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch --all-namespaces -o=wide $params }
 function kgingwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch --all-namespaces -o=wide $params }
 function kgcmwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch --all-namespaces -o=wide $params }
 function kgpvcwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch --all-namespaces -o=wide $params }
-function kghpawallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch --all-namespaces -o=wide $params }
+function kghpawallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch --all-namespaces -o=wide $params }
 function kgcrtwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch --all-namespaces -o=wide $params }
 function kgsecwallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch --all-namespaces -o=wide $params }
 function kgnswallowide([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch --all-namespaces -o=wide $params }
@@ -534,14 +535,14 @@ function kgpoallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) 
 function kgdepallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --all-namespaces --watch -o=json $params }
 function kgagsallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --all-namespaces --watch -o=json $params }
 function kgpgallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --all-namespaces --watch -o=json $params }
-function kgssallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces --watch -o=json $params }
+function kgstsallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --all-namespaces --watch -o=json $params }
 function kgdsallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --all-namespaces --watch -o=json $params }
 function kgrsallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --all-namespaces --watch -o=json $params }
 function kgsvcallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --all-namespaces --watch -o=json $params }
 function kgingallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --all-namespaces --watch -o=json $params }
 function kgcmallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --all-namespaces --watch -o=json $params }
 function kgpvcallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces --watch -o=json $params }
-function kghpaallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --all-namespaces --watch -o=json $params }
+function kghpaallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --all-namespaces --watch -o=json $params }
 function kgcrtallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --all-namespaces --watch -o=json $params }
 function kgsecallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --all-namespaces --watch -o=json $params }
 function kgnsallwojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --all-namespaces --watch -o=json $params }
@@ -550,14 +551,14 @@ function kgpowojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) 
 function kgdepwojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=json --all-namespaces $params }
 function kgagswojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch -o=json --all-namespaces $params }
 function kgpgwojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch -o=json --all-namespaces $params }
-function kgsswojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=json --all-namespaces $params }
+function kgstswojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=json --all-namespaces $params }
 function kgdswojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch -o=json --all-namespaces $params }
 function kgrswojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch -o=json --all-namespaces $params }
 function kgsvcwojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=json --all-namespaces $params }
 function kgingwojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch -o=json --all-namespaces $params }
 function kgcmwojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=json --all-namespaces $params }
 function kgpvcwojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=json --all-namespaces $params }
-function kghpawojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=json --all-namespaces $params }
+function kghpawojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch -o=json --all-namespaces $params }
 function kgcrtwojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch -o=json --all-namespaces $params }
 function kgsecwojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=json --all-namespaces $params }
 function kgnswojsonall([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch -o=json --all-namespaces $params }
@@ -566,14 +567,14 @@ function kgpowallojson([Parameter(ValueFromRemainingArguments = $true)]$params) 
 function kgdepwallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --all-namespaces -o=json $params }
 function kgagswallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch --all-namespaces -o=json $params }
 function kgpgwallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch --all-namespaces -o=json $params }
-function kgsswallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch --all-namespaces -o=json $params }
+function kgstswallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch --all-namespaces -o=json $params }
 function kgdswallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch --all-namespaces -o=json $params }
 function kgrswallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch --all-namespaces -o=json $params }
 function kgsvcwallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch --all-namespaces -o=json $params }
 function kgingwallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch --all-namespaces -o=json $params }
 function kgcmwallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch --all-namespaces -o=json $params }
 function kgpvcwallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch --all-namespaces -o=json $params }
-function kghpawallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch --all-namespaces -o=json $params }
+function kghpawallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch --all-namespaces -o=json $params }
 function kgcrtwallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch --all-namespaces -o=json $params }
 function kgsecwallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch --all-namespaces -o=json $params }
 function kgnswallojson([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get namespaces --watch --all-namespaces -o=json $params }
@@ -670,10 +671,10 @@ function kedpgl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kub
 function kgpgl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg -l $params }
 function kdpgl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pg -l $params }
 function krmpgl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pg -l $params }
-function kedssl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit statefulset -l $params }
-function kgssl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -l $params }
-function kdssl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe statefulset -l $params }
-function krmssl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete statefulset -l $params }
+function kedstsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit statefulset -l $params }
+function kgstsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -l $params }
+function kdstsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe statefulset -l $params }
+function krmstsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete statefulset -l $params }
 function keddsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit daemonset -l $params }
 function kgdsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset -l $params }
 function kddsl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe daemonset -l $params }
@@ -698,10 +699,10 @@ function kedpvcl([Parameter(ValueFromRemainingArguments = $true)]$params) { & ku
 function kgpvcl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -l $params }
 function kdpvcl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pvc -l $params }
 function krmpvcl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pvc -l $params }
-function kedhpal([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit pvc -l $params }
-function kghpal([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -l $params }
-function kdhpal([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pvc -l $params }
-function krmhpal([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pvc -l $params }
+function kedhpal([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit hpa -l $params }
+function kghpal([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa -l $params }
+function kdhpal([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe hpa -l $params }
+function krmhpal([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete hpa -l $params }
 function kedcrtl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit cert -l $params }
 function kgcrtl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert -l $params }
 function kdcrtl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe cert -l $params }
@@ -721,14 +722,14 @@ function kgpooyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { &
 function kgdepoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=yaml -l $params }
 function kgagsoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags -o=yaml -l $params }
 function kgpgoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg -o=yaml -l $params }
-function kgssoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=yaml -l $params }
+function kgstsoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=yaml -l $params }
 function kgdsoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset -o=yaml -l $params }
 function kgrsoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset -o=yaml -l $params }
 function kgsvcoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=yaml -l $params }
 function kgingoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io -o=yaml -l $params }
 function kgcmoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=yaml -l $params }
 function kgpvcoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=yaml -l $params }
-function kghpaoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=yaml -l $params }
+function kghpaoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa -o=yaml -l $params }
 function kgcrtoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert -o=yaml -l $params }
 function kgsecoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=yaml -l $params }
 function kgnooyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes -o=yaml -l $params }
@@ -738,14 +739,14 @@ function kgpoowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { &
 function kgdepowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=wide -l $params }
 function kgagsowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags -o=wide -l $params }
 function kgpgowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg -o=wide -l $params }
-function kgssowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=wide -l $params }
+function kgstsowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=wide -l $params }
 function kgdsowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset -o=wide -l $params }
 function kgrsowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset -o=wide -l $params }
 function kgsvcowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=wide -l $params }
 function kgingowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io -o=wide -l $params }
 function kgcmowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=wide -l $params }
 function kgpvcowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=wide -l $params }
-function kghpaowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=wide -l $params }
+function kghpaowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa -o=wide -l $params }
 function kgcrtowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert -o=wide -l $params }
 function kgsecowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=wide -l $params }
 function kgnoowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes -o=wide -l $params }
@@ -755,14 +756,14 @@ function kgpoojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { &
 function kgdepojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=json -l $params }
 function kgagsojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags -o=json -l $params }
 function kgpgojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg -o=json -l $params }
-function kgssojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=json -l $params }
+function kgstsojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=json -l $params }
 function kgdsojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset -o=json -l $params }
 function kgrsojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset -o=json -l $params }
 function kgsvcojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=json -l $params }
 function kgingojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io -o=json -l $params }
 function kgcmojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=json -l $params }
 function kgpvcojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=json -l $params }
-function kghpaojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=json -l $params }
+function kghpaojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa -o=json -l $params }
 function kgcrtojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert -o=json -l $params }
 function kgsecojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=json -l $params }
 function kgnoojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes -o=json -l $params }
@@ -775,14 +776,14 @@ function kgpowl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kub
 function kgdepwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -l $params }
 function kgagswl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch -l $params }
 function kgpgwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch -l $params }
-function kgsswl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -l $params }
+function kgstswl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -l $params }
 function kgdswl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch -l $params }
 function kgrswl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch -l $params }
 function kgsvcwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -l $params }
 function kgingwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch -l $params }
 function kgcmwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -l $params }
 function kgpvcwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -l $params }
-function kghpawl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -l $params }
+function kghpawl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch -l $params }
 function kgcrtwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch -l $params }
 function kgsecwl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -l $params }
 function kgnowl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch -l $params }
@@ -792,14 +793,14 @@ function kgpowoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { 
 function kgdepwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=yaml -l $params }
 function kgagswoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch -o=yaml -l $params }
 function kgpgwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch -o=yaml -l $params }
-function kgsswoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=yaml -l $params }
+function kgstswoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=yaml -l $params }
 function kgdswoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch -o=yaml -l $params }
 function kgrswoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch -o=yaml -l $params }
 function kgsvcwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=yaml -l $params }
 function kgingwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch -o=yaml -l $params }
 function kgcmwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=yaml -l $params }
 function kgpvcwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=yaml -l $params }
-function kghpawoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=yaml -l $params }
+function kghpawoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch -o=yaml -l $params }
 function kgcrtwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch -o=yaml -l $params }
 function kgsecwoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=yaml -l $params }
 function kgnowoyamll([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch -o=yaml -l $params }
@@ -815,14 +816,14 @@ function kgpowowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { 
 function kgdepwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=wide -l $params }
 function kgagswowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch -o=wide -l $params }
 function kgpgwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch -o=wide -l $params }
-function kgsswowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=wide -l $params }
+function kgstswowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=wide -l $params }
 function kgdswowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch -o=wide -l $params }
 function kgrswowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch -o=wide -l $params }
 function kgsvcwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=wide -l $params }
 function kgingwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch -o=wide -l $params }
 function kgcmwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=wide -l $params }
 function kgpvcwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=wide -l $params }
-function kghpawowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=wide -l $params }
+function kghpawowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch -o=wide -l $params }
 function kgcrtwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch -o=wide -l $params }
 function kgsecwowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=wide -l $params }
 function kgnowowidel([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch -o=wide -l $params }
@@ -832,14 +833,14 @@ function kgpowojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { 
 function kgdepwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=json -l $params }
 function kgagswojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch -o=json -l $params }
 function kgpgwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch -o=json -l $params }
-function kgsswojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=json -l $params }
+function kgstswojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=json -l $params }
 function kgdswojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch -o=json -l $params }
 function kgrswojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch -o=json -l $params }
 function kgsvcwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=json -l $params }
 function kgingwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch -o=json -l $params }
 function kgcmwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=json -l $params }
 function kgpvcwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=json -l $params }
-function kghpawojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=json -l $params }
+function kghpawojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch -o=json -l $params }
 function kgcrtwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch -o=json -l $params }
 function kgsecwojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=json -l $params }
 function kgnowojsonl([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get nodes --watch -o=json -l $params }
@@ -881,10 +882,10 @@ function kedpgn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kub
 function kgpgn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --namespace $params }
 function kdpgn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pg --namespace $params }
 function krmpgn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pg --namespace $params }
-function kedssn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit statefulset --namespace $params }
-function kgssn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --namespace $params }
-function kdssn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe statefulset --namespace $params }
-function krmssn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete statefulset --namespace $params }
+function kedstsn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit statefulset --namespace $params }
+function kgstsn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --namespace $params }
+function kdstsn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe statefulset --namespace $params }
+function krmstsn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete statefulset --namespace $params }
 function keddsn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit daemonset --namespace $params }
 function kgdsn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --namespace $params }
 function kddsn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe daemonset --namespace $params }
@@ -909,10 +910,10 @@ function kedpvcn([Parameter(ValueFromRemainingArguments = $true)]$params) { & ku
 function kgpvcn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --namespace $params }
 function kdpvcn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pvc --namespace $params }
 function krmpvcn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pvc --namespace $params }
-function kedhpan([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit pvc --namespace $params }
-function kghpan([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --namespace $params }
-function kdhpan([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe pvc --namespace $params }
-function krmhpan([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete pvc --namespace $params }
+function kedhpan([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit hpa --namespace $params }
+function kghpan([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --namespace $params }
+function kdhpan([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe hpa --namespace $params }
+function krmhpan([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl delete hpa --namespace $params }
 function kedcrtn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl edit cert --namespace $params }
 function kgcrtn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --namespace $params }
 function kdcrtn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl describe cert --namespace $params }
@@ -926,14 +927,14 @@ function kgpooyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { &
 function kgdepoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=yaml --namespace $params }
 function kgagsoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags -o=yaml --namespace $params }
 function kgpgoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg -o=yaml --namespace $params }
-function kgssoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=yaml --namespace $params }
+function kgstsoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=yaml --namespace $params }
 function kgdsoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset -o=yaml --namespace $params }
 function kgrsoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset -o=yaml --namespace $params }
 function kgsvcoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=yaml --namespace $params }
 function kgingoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io -o=yaml --namespace $params }
 function kgcmoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=yaml --namespace $params }
 function kgpvcoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=yaml --namespace $params }
-function kghpaoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=yaml --namespace $params }
+function kghpaoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa -o=yaml --namespace $params }
 function kgcrtoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert -o=yaml --namespace $params }
 function kgsecoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=yaml --namespace $params }
 function kgowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=wide --namespace $params }
@@ -941,14 +942,14 @@ function kgpoowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { &
 function kgdepowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=wide --namespace $params }
 function kgagsowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags -o=wide --namespace $params }
 function kgpgowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg -o=wide --namespace $params }
-function kgssowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=wide --namespace $params }
+function kgstsowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=wide --namespace $params }
 function kgdsowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset -o=wide --namespace $params }
 function kgrsowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset -o=wide --namespace $params }
 function kgsvcowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=wide --namespace $params }
 function kgingowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io -o=wide --namespace $params }
 function kgcmowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=wide --namespace $params }
 function kgpvcowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=wide --namespace $params }
-function kghpaowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=wide --namespace $params }
+function kghpaowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa -o=wide --namespace $params }
 function kgcrtowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert -o=wide --namespace $params }
 function kgsecowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=wide --namespace $params }
 function kgojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=json --namespace $params }
@@ -956,14 +957,14 @@ function kgpoojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { &
 function kgdepojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment -o=json --namespace $params }
 function kgagsojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags -o=json --namespace $params }
 function kgpgojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg -o=json --namespace $params }
-function kgssojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=json --namespace $params }
+function kgstsojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset -o=json --namespace $params }
 function kgdsojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset -o=json --namespace $params }
 function kgrsojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset -o=json --namespace $params }
 function kgsvcojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service -o=json --namespace $params }
 function kgingojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io -o=json --namespace $params }
 function kgcmojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap -o=json --namespace $params }
 function kgpvcojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=json --namespace $params }
-function kghpaojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc -o=json --namespace $params }
+function kghpaojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa -o=json --namespace $params }
 function kgcrtojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert -o=json --namespace $params }
 function kgsecojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret -o=json --namespace $params }
 function kgsln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --namespace $params }
@@ -974,14 +975,14 @@ function kgpown([Parameter(ValueFromRemainingArguments = $true)]$params) { & kub
 function kgdepwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch --namespace $params }
 function kgagswn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch --namespace $params }
 function kgpgwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch --namespace $params }
-function kgsswn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch --namespace $params }
+function kgstswn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch --namespace $params }
 function kgdswn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch --namespace $params }
 function kgrswn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch --namespace $params }
 function kgsvcwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch --namespace $params }
 function kgingwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch --namespace $params }
 function kgcmwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch --namespace $params }
 function kgpvcwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch --namespace $params }
-function kghpawn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch --namespace $params }
+function kghpawn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch --namespace $params }
 function kgcrtwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch --namespace $params }
 function kgsecwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch --namespace $params }
 function kgwoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=yaml --namespace $params }
@@ -989,14 +990,14 @@ function kgpowoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { 
 function kgdepwoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=yaml --namespace $params }
 function kgagswoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch -o=yaml --namespace $params }
 function kgpgwoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch -o=yaml --namespace $params }
-function kgsswoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=yaml --namespace $params }
+function kgstswoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=yaml --namespace $params }
 function kgdswoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch -o=yaml --namespace $params }
 function kgrswoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch -o=yaml --namespace $params }
 function kgsvcwoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=yaml --namespace $params }
 function kgingwoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch -o=yaml --namespace $params }
 function kgcmwoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=yaml --namespace $params }
 function kgpvcwoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=yaml --namespace $params }
-function kghpawoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=yaml --namespace $params }
+function kghpawoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch -o=yaml --namespace $params }
 function kgcrtwoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch -o=yaml --namespace $params }
 function kgsecwoyamln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=yaml --namespace $params }
 function kgowidesln([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get -o=wide --show-labels --namespace $params }
@@ -1010,14 +1011,14 @@ function kgpowowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { 
 function kgdepwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=wide --namespace $params }
 function kgagswowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch -o=wide --namespace $params }
 function kgpgwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch -o=wide --namespace $params }
-function kgsswowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=wide --namespace $params }
+function kgstswowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=wide --namespace $params }
 function kgdswowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch -o=wide --namespace $params }
 function kgrswowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch -o=wide --namespace $params }
 function kgsvcwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=wide --namespace $params }
 function kgingwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch -o=wide --namespace $params }
 function kgcmwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=wide --namespace $params }
 function kgpvcwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=wide --namespace $params }
-function kghpawowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=wide --namespace $params }
+function kghpawowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch -o=wide --namespace $params }
 function kgcrtwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch -o=wide --namespace $params }
 function kgsecwowiden([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=wide --namespace $params }
 function kgwojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --watch -o=json --namespace $params }
@@ -1025,14 +1026,14 @@ function kgpowojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { 
 function kgdepwojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get deployment --watch -o=json --namespace $params }
 function kgagswojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ags --watch -o=json --namespace $params }
 function kgpgwojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pg --watch -o=json --namespace $params }
-function kgsswojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=json --namespace $params }
+function kgstswojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get statefulset --watch -o=json --namespace $params }
 function kgdswojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get daemonset --watch -o=json --namespace $params }
 function kgrswojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get replicaset --watch -o=json --namespace $params }
 function kgsvcwojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get service --watch -o=json --namespace $params }
 function kgingwojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get ingress.v1.networking.k8s.io --watch -o=json --namespace $params }
 function kgcmwojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get configmap --watch -o=json --namespace $params }
 function kgpvcwojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=json --namespace $params }
-function kghpawojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get pvc --watch -o=json --namespace $params }
+function kghpawojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get hpa --watch -o=json --namespace $params }
 function kgcrtwojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get cert --watch -o=json --namespace $params }
 function kgsecwojsonn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get secret --watch -o=json --namespace $params }
 function kgslwn([Parameter(ValueFromRemainingArguments = $true)]$params) { & kubectl get --show-labels --watch --namespace $params }
